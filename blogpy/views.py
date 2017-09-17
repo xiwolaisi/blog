@@ -12,6 +12,7 @@ def index(request):
     return render(request,'blogpy/index.html',context={'post_list':post_list})
 def detail(request,pk):
     post = get_object_or_404(Post,pk=pk)
+    post.increase_views()
     post.body = markdown.markdown(post.body,
                                   extensions=[
                                       'markdown.extensions.extra',
